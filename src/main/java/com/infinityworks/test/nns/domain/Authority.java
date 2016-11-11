@@ -11,6 +11,9 @@ public class Authority {
     @JsonProperty("Name")
     private String name;
 
+    @JsonProperty("EstablishmentCount")
+    private String establishmentCount;
+
     public Authority() {
     }
 
@@ -30,11 +33,20 @@ public class Authority {
         this.name = name;
     }
 
+    public String getEstablishmentCount() {
+        return establishmentCount;
+    }
+
+    public void setEstablishmentCount(String establishmentCount) {
+        this.establishmentCount = establishmentCount;
+    }
+
     @Override
     public String toString() {
         return "Authority{" +
                 "localAuthorityId=" + localAuthorityId +
                 ", name='" + name + '\'' +
+                ", establishmentCount='" + establishmentCount + '\'' +
                 '}';
     }
 }

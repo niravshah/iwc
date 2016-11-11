@@ -12,9 +12,8 @@ public class EstablishmentService {
     @Autowired
     private EstablishmentsRepository establishmentsRepository;
 
-    @Cacheable("establishments")
     public Establishments getEstablishmentsByLocalAuthorityId(Integer localAuthorityId) {
-        return establishmentsRepository.getEstablishmentsByLocalAuthorityId(localAuthorityId);
+        return establishmentsRepository.getEstablishmentsByLocalAuthorityId(localAuthorityId, null);
     }
 
 }

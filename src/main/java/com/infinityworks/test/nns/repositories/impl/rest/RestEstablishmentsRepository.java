@@ -4,6 +4,7 @@ import com.infinityworks.test.nns.domain.Authorities;
 import com.infinityworks.test.nns.domain.Establishments;
 import com.infinityworks.test.nns.repositories.EstablishmentsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -16,8 +17,8 @@ public class RestEstablishmentsRepository implements EstablishmentsRepository {
     private RestTemplate restTemplate;
 
     @Override
-    public Establishments getEstablishmentsByLocalAuthorityId(Integer localAuthorityId) {
-
+    @Cacheable("establishments")
+    public Establishments getEstablishmentsByLocalAuthorityId(Integer localAuthorityId, Integer totalEstablishments) {
         final ResponseEntity<Establishments> establishmentsResponseEntity = restTemplate.getForEntity("http://api.ratings.food.gov.uk/Establishments?localAuthorityId='" + localAuthorityId + "'", Establishments.class);
         return establishmentsResponseEntity.getBody();
     }
