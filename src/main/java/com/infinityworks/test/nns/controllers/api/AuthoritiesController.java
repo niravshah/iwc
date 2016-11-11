@@ -1,7 +1,7 @@
 package com.infinityworks.test.nns.controllers.api;
 
 import com.infinityworks.test.nns.domain.Authorities;
-import com.infinityworks.test.nns.services.AuthoritiesService;
+import com.infinityworks.test.nns.services.impl.AuthoritiesService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

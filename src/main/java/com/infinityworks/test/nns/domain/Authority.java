@@ -1,6 +1,5 @@
 package com.infinityworks.test.nns.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Authority {
@@ -12,7 +11,7 @@ public class Authority {
     private String name;
 
     @JsonProperty("EstablishmentCount")
-    private String establishmentCount;
+    private Integer establishmentCount;
 
     public Authority() {
     }
@@ -33,11 +32,11 @@ public class Authority {
         this.name = name;
     }
 
-    public String getEstablishmentCount() {
+    public Integer getEstablishmentCount() {
         return establishmentCount;
     }
 
-    public void setEstablishmentCount(String establishmentCount) {
+    public void setEstablishmentCount(Integer establishmentCount) {
         this.establishmentCount = establishmentCount;
     }
 

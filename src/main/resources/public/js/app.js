@@ -1,8 +1,10 @@
-var app = angular.module('iwc-demo', ['ui.router','ngResource']);
+var app = angular.module('iwc-demo', ['ui.router', 'ngResource'])
+    .config(function ($httpProvider) {
+
+        $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
+
+    });
 
 /** Controllers **/
 app.controller('MainController', MainController);
-/** Services **/
-app.factory('Authorities', Authorities);
 
-app.run();

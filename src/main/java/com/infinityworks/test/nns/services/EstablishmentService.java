@@ -1,23 +1,16 @@
 package com.infinityworks.test.nns.services;
 
+import com.infinityworks.test.nns.domain.Establishment;
 import com.infinityworks.test.nns.domain.Establishments;
-import com.infinityworks.test.nns.repositories.EstablishmentsRepository;
+import com.infinityworks.test.nns.domain.Stats;
+import org.springframework.cache.annotation.Cacheable;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
+import java.util.List;
 
-@Service
-public class EstablishmentService {
+public interface EstablishmentService {
 
-    @Autowired
-    private EstablishmentsRepository establishmentsRepository;
+    @Cacheable("establishments")
+    Establishments getEstablishmentsByLocalAuthorityId(Integer localAuthorityId);
 
-    @Value("${service.establishments.page_size.max}")
-    private static Integer MAX_PAGE_SIZE;
-
-    public Establishments getEstablishmentsByLocalAuthorityId(Integer localAuthorityId) {
-        return establishmentsRepository.getEstablishmentsByLocalAuthorityId(localAuthorityId, MAX_PAGE_SIZE,0);
-    }
-
+    Stats getEstablishmentStats(List<Establishment> establishments);
 }
