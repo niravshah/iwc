@@ -17,7 +17,7 @@ public class EstablishmentService {
     private static Integer MAX_PAGE_SIZE;
 
     public Establishments getEstablishmentsByLocalAuthorityId(Integer localAuthorityId) {
-        return establishmentsRepository.getEstablishmentsByLocalAuthorityId(localAuthorityId, null);
+        return establishmentsRepository.getEstablishmentsByLocalAuthorityId(localAuthorityId, MAX_PAGE_SIZE,0);
     }
 
 }
