@@ -4,5 +4,5 @@ import com.infinityworks.test.nns.domain.Establishments;
 
 public interface EstablishmentsRepository {
 
-    Establishments getEstablishmentsByLocalAuthorityId(Integer localAuthorityId, Integer establishmentCount);
+    Establishments getEstablishmentsByLocalAuthorityId(Integer localAuthorityId, Integer pageSize, Integer pageNumber);
 }

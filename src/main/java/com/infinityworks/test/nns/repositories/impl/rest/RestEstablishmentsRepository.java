@@ -18,7 +18,7 @@ public class RestEstablishmentsRepository implements EstablishmentsRepository {
 
     @Override
     @Cacheable("establishments")
-    public Establishments getEstablishmentsByLocalAuthorityId(Integer localAuthorityId, Integer totalEstablishments) {
+    public Establishments getEstablishmentsByLocalAuthorityId(Integer localAuthorityId, Integer pageSize, Integer pageNumber) {
         final ResponseEntity<Establishments> establishmentsResponseEntity = restTemplate.getForEntity("http://api.ratings.food.gov.uk/Establishments?localAuthorityId='" + localAuthorityId + "'", Establishments.class);
         return establishmentsResponseEntity.getBody();
     }
