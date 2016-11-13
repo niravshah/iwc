@@ -1,23 +1,20 @@
 package com.infinityworks.test.nns.domain;
 
-import java.util.Map;
+import java.util.List;
 
 public class Stats {
 
-    private Map<String, Long> stats;
+    private List<StatItem> statItems;
 
-    public Stats() {
+    public Stats(List<StatItem> statItems) {
+        this.statItems = statItems;
     }
 
-    public Stats(Map<String, Long> stats) {
-        this.stats = stats;
+    public List<StatItem> getStatItems() {
+        return statItems;
     }
 
-    public Map<String, Long> getStats() {
-        return stats;
-    }
-
-    public void setStats(Map<String, Long> stats) {
-        this.stats = stats;
+    public void setStatItems(List<StatItem> statItems) {
+        this.statItems = statItems;
     }
 }

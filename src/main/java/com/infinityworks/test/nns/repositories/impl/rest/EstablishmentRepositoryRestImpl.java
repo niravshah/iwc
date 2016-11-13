@@ -22,9 +22,9 @@ public class EstablishmentRepositoryRestImpl extends BaseRestRespository impleme
     @Override
     public Establishments getEstablishmentsByLocalAuthorityId(Integer localAuthorityId, Integer pageSize, Integer pageNumber) {
         UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(getUrl())
-                .queryParam("localAuthorityId", localAuthorityId);
-                //.queryParam("pageSize", pageSize)
-                //.queryParam("pageNumber", pageNumber);
+                .queryParam("localAuthorityId", localAuthorityId)
+                .queryParam("pageSize", pageSize)
+                .queryParam("pageNumber", pageNumber);
         final ResponseEntity<Establishments> establishmentsResponseEntity = restTemplate.getForEntity(builder.build().toUriString(), Establishments.class);
         return establishmentsResponseEntity.getBody();
     }

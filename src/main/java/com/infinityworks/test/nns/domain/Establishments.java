@@ -9,6 +9,10 @@ public class Establishments {
     public Establishments() {
     }
 
+    public Establishments(List<Establishment> establishments) {
+        this.establishments = establishments;
+    }
+
     public List<Establishment> getEstablishments() {
         return establishments;
     }

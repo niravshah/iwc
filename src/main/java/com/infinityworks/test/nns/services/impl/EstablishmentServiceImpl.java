@@ -3,11 +3,12 @@ package com.infinityworks.test.nns.services.impl;
 import com.infinityworks.test.nns.domain.Authority;
 import com.infinityworks.test.nns.domain.Establishment;
 import com.infinityworks.test.nns.domain.Establishments;
+import com.infinityworks.test.nns.domain.StatItem;
 import com.infinityworks.test.nns.domain.Stats;
 import com.infinityworks.test.nns.repositories.EstablishmentRepository;
-
 import com.infinityworks.test.nns.services.AuthoritiesService;
 import com.infinityworks.test.nns.services.EstablishmentService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.Cacheable;
@@ -35,24 +36,21 @@ public class EstablishmentServiceImpl implements EstablishmentService {
     public Establishments getEstablishmentsByLocalAuthorityId(Integer localAuthorityId) {
         final Authority authority = authoritiesServiceImpl.getAuthority(localAuthorityId);
         final Integer establishmentCount = authority.getEstablishmentCount();
-        if (establishmentCount > MAX_PAGE_SIZE) {
-            int numberOfPages = ((establishmentCount - 1) / MAX_PAGE_SIZE) + 1;
-            List<Establishment> establishments = new ArrayList<>();
-            for (int i = 1; i <= numberOfPages; i++) {
-                establishments.addAll(establishmentRepository.getEstablishmentsByLocalAuthorityId(localAuthorityId, MAX_PAGE_SIZE, i).getEstablishments());
-            }
-            Establishments establishments1 = new Establishments();
-            establishments1.setEstablishments(establishments);
-            return establishments1;
-        } else {
-            return establishmentRepository.getEstablishmentsByLocalAuthorityId(localAuthorityId, establishmentCount, 1);
+        int numberOfPages = ((establishmentCount - 1) / MAX_PAGE_SIZE) + 1;
+        List<Establishment> establishments = new ArrayList<>();
+        for (int i = 1; i <= numberOfPages; i++) {
+            establishments.addAll(establishmentRepository.getEstablishmentsByLocalAuthorityId(localAuthorityId, MAX_PAGE_SIZE, i).getEstablishments());
         }
+        return new Establishments(establishments);
     }
 
     @Override
     public Stats getEstablishmentStats(List<Establishment> establishments) {
+
         final Map<String, Long> stats = establishments.stream().collect(Collectors.groupingBy(Establishment::getRatingValue, Collectors.counting()));
-        return new Stats(stats);
+        List<StatItem> statItems = new ArrayList<>();
+        stats.forEach((s, aLong) -> statItems.add(new StatItem(s, aLong)));
+        return new Stats(statItems);
     }
 
 }
