@@ -11,7 +11,7 @@
 <body ng-controller="MainController" ng-init="initMethod()">
 
 <select ng-model="selectedAuthority" ng-change="getEstablishments()">
-    <option ng-repeat="x in authorities" value="{{x.LocalAuthorityId}}">{{x.Name}}</option>
+    <option ng-repeat="x in authorities" value="{{x.localAuthorityId}}">{{x.name}}</option>
 </select>
 
 <canvas id="doughnut" class="chart chart-doughnut"

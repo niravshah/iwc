@@ -1,4 +1,4 @@
-package com.infinityworks.test.nns.caching;
+package com.infinityworks.test.nns.config.caching;
 
 import com.google.common.cache.CacheBuilder;
 import org.springframework.cache.Cache;

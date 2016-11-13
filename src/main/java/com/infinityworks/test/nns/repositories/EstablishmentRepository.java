@@ -2,7 +2,7 @@ package com.infinityworks.test.nns.repositories;
 
 import com.infinityworks.test.nns.domain.Establishments;
 
-public interface EstablishmentsRepository {
+public interface EstablishmentRepository {
 
     Establishments getEstablishmentsByLocalAuthorityId(Integer localAuthorityId, Integer pageSize, Integer pageNumber);
 }

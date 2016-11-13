@@ -1,5 +1,6 @@
 package com.infinityworks.test.nns;
 
+import com.infinityworks.test.nns.interceptors.RestTemplateExceptionHandler;
 import com.infinityworks.test.nns.interceptors.ApiVersionInterceptor;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -18,7 +19,10 @@ public class DemoApplication {
 
     @Bean
     public RestTemplate restTemplate(RestTemplateBuilder builder) {
-        return builder.additionalInterceptors(Collections.singletonList(new ApiVersionInterceptor())).build();
+        return builder
+                .additionalInterceptors(Collections.singletonList(new ApiVersionInterceptor()))
+                .errorHandler(new RestTemplateExceptionHandler())
+                .build();
     }
 
 }

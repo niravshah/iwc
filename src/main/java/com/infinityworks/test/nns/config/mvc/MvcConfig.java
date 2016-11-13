@@ -1,4 +1,4 @@
-package com.infinityworks.test.nns.controllers.mvc;
+package com.infinityworks.test.nns.config.mvc;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
