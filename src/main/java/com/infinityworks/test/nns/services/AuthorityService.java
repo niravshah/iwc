@@ -5,7 +5,7 @@ import com.infinityworks.test.nns.domain.Authority;
 
 import org.springframework.cache.annotation.Cacheable;
 
-public interface AuthoritiesService {
+public interface AuthorityService {
 
     @Cacheable("authorities")
     Authorities getAuthorities();

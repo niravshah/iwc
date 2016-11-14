@@ -1,8 +1,7 @@
-package com.infinityworks.test.nns.controllers.api;
+package com.infinityworks.test.nns.controllers;
 
 import com.infinityworks.test.nns.domain.Authorities;
-import com.infinityworks.test.nns.services.AuthoritiesService;
-import com.infinityworks.test.nns.services.impl.AuthoritiesServiceImpl;
+import com.infinityworks.test.nns.services.AuthorityService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,11 +14,11 @@ import static org.springframework.http.ResponseEntity.ok;
 public class AuthoritiesController {
 
     @Autowired
-    private AuthoritiesService authoritiesServiceImpl;
+    private AuthorityService authorityServiceImpl;
 
     @RequestMapping(value = "/api/authorities")
     public ResponseEntity<Authorities> getAuthorities() {
-        return ok(authoritiesServiceImpl.getAuthorities());
+        return ok(authorityServiceImpl.getAuthorities());
     }
 
 }

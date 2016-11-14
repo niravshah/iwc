@@ -7,7 +7,7 @@ import com.infinityworks.test.nns.domain.StatItem;
 import com.infinityworks.test.nns.domain.Stats;
 import com.infinityworks.test.nns.exceptions.IncorrectEstablishmentDetailsException;
 import com.infinityworks.test.nns.repositories.EstablishmentRepository;
-import com.infinityworks.test.nns.services.AuthoritiesService;
+import com.infinityworks.test.nns.services.AuthorityService;
 import com.infinityworks.test.nns.services.EstablishmentService;
 
 import org.apache.commons.logging.Log;
@@ -33,7 +33,7 @@ public class EstablishmentServiceImpl implements EstablishmentService {
     private EstablishmentRepository establishmentRepository;
 
     @Autowired
-    private AuthoritiesService authoritiesServiceImpl;
+    private AuthorityService authorityServiceImpl;
 
     @Value("${service.establishments.page_size.max}")
     private Integer MAX_PAGE_SIZE;
@@ -42,7 +42,7 @@ public class EstablishmentServiceImpl implements EstablishmentService {
     @Cacheable("establishments")
     public Establishments getEstablishmentsByLocalAuthorityId(Integer localAuthorityId) {
         logger.info(format("Getting Establishments for Authority with id %d ",localAuthorityId));
-        final Authority authority = authoritiesServiceImpl.getAuthority(localAuthorityId);
+        final Authority authority = authorityServiceImpl.getAuthority(localAuthorityId);
         final Integer establishmentCount = authority.getEstablishmentCount();
         logger.info(format("Found %d Establishments for Authority with id %d ",establishmentCount, localAuthorityId));
         int numberOfPages = ((establishmentCount - 1) / MAX_PAGE_SIZE) + 1;

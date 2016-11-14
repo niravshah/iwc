@@ -1,4 +1,4 @@
-package com.infinityworks.test.nns.controllers.api;
+package com.infinityworks.test.nns.controllers;
 
 import com.infinityworks.test.nns.domain.Establishments;
 import com.infinityworks.test.nns.domain.Stats;

@@ -5,7 +5,7 @@ import com.infinityworks.test.nns.domain.Authority;
 import com.infinityworks.test.nns.exceptions.AuthorityNotFoundException;
 import com.infinityworks.test.nns.exceptions.NoAuthoritiesFoundException;
 import com.infinityworks.test.nns.repositories.AuthorityRepository;
-import com.infinityworks.test.nns.services.AuthoritiesService;
+import com.infinityworks.test.nns.services.AuthorityService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +15,9 @@ import org.springframework.stereotype.Service;
 import static java.lang.String.format;
 
 @Service
-public class AuthoritiesServiceImpl implements AuthoritiesService {
+public class AuthorityServiceImpl implements AuthorityService {
 
-    private static final Log logger = LogFactory.getLog(AuthoritiesService.class);
+    private static final Log logger = LogFactory.getLog(AuthorityService.class);
 
     @Autowired
     public AuthorityRepository authorityRepository;
@@ -27,6 +27,9 @@ public class AuthoritiesServiceImpl implements AuthoritiesService {
     public Authorities getAuthorities() {
         logger.info("Calling repository to get basic information for all authorities");
         Authorities authorities = authorityRepository.getAuthorities();
+        if (authorities == null) {
+            throw new NoAuthoritiesFoundException("No Authorities were returned from the FSA API");
+        }
         if (authorities.getAuthorities() != null && authorities.getAuthorities().size() > 0) {
             logger.info(format("Returning basic information for %d authorities", authorities.getAuthorities().size()));
             return authorities;
