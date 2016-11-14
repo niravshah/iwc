@@ -9,6 +9,8 @@ import com.infinityworks.test.nns.repositories.EstablishmentRepository;
 import com.infinityworks.test.nns.services.AuthoritiesService;
 import com.infinityworks.test.nns.services.EstablishmentService;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.Cacheable;
@@ -22,6 +24,8 @@ import java.util.stream.Collectors;
 
 @Service
 public class EstablishmentServiceImpl implements EstablishmentService {
+
+    private static final Log logger = LogFactory.getLog(EstablishmentServiceImpl.class);
 
     @Autowired
     private EstablishmentRepository establishmentRepository;
