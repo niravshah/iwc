@@ -8,7 +8,7 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import java.io.IOException;
 import java.text.DecimalFormat;
 
-public class MyFloatDeserializer extends JsonSerializer<Float> {
+public class CustomFloatDeserializer extends JsonSerializer<Float> {
     @Override
     public void serialize(Float value, JsonGenerator gen, SerializerProvider serializers) throws IOException, JsonProcessingException {
         DecimalFormat df = new DecimalFormat();
