@@ -29,7 +29,7 @@ var MainController = ['$scope', '$http', 'usSpinnerService', function ($scope, $
             }
         },
         title: {
-            text: 'Establishment Rating Summary'
+            text: 'Establishment Rating Distribution'
         },
         series: [{
             name: 'Establishments',
@@ -39,17 +39,21 @@ var MainController = ['$scope', '$http', 'usSpinnerService', function ($scope, $
     };
 
     $scope.initMethod = function () {
+        $('#results-row').hide();
         $http.get('/api/authorities').then(function (response) {
             $scope.authorities = response.data.authorities;
         });
     };
 
     $scope.getEstablishments = function () {
+        $('authDropDown').prop('disabled',true);
         usSpinnerService.spin('spinner-1');
         var url = '/api/authority/' + $scope.selectedAuthority + '/stats';
         $http.get(url).then(function (response) {
             $scope.chartConfig.series[0].data = response.data.statItems;
             $scope.tableData = response.data.statItems;
+            $('#results-row').show();
+            $('authDropDown').prop('disabled', false);
             usSpinnerService.stop('spinner-1');
         })
     }

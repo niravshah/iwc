@@ -4,31 +4,90 @@
 <head>
     <title>IWC</title>
     <link rel="icon" href="favicon.ico?v=2"/>
-    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.1/css/bootstrap.min.css"
-          th:href="@{/webjars/bootstrap/3.3.1/css/bootstrap.min.css}" rel="stylesheet"
+    <link th:href="@{/webjars/bootstrap/3.3.1/css/bootstrap.min.css}" rel="stylesheet"
           media="screen"/>
     <link href="../css/app.css" th:href="@{/css/app.css}" rel="stylesheet" media="screen"/>
 </head>
 <body ng-controller="MainController" ng-init="initMethod()">
 
-<span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-1"></span>
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">InfinityWorks</a>
+        </div>
 
-<select ng-model="selectedAuthority" ng-change="getEstablishments()">
-    <option ng-repeat="x in authorities" value="{{x.localAuthorityId}}">{{x.name}}</option>
-</select>
+    </div>
+    <!-- /.container -->
+</nav>
 
-<highchart config="chartConfig" style="height: 600px;"></highchart>
+<!-- Full Width Image Header -->
+<header class="header-image">
+    <div class="headline">
+        <div class="container">
+            <h2>Food Hygiene Rating Distribution</h2>
+        </div>
+    </div>
+</header>
+
+<!-- Page Content -->
+<div class="container">
+
+    <div class="featurette" id="about">
+        <h2 class="featurette-heading">Select an Authority To View Rating Distribution
+        </h2>
+        <div class="row ">
+            <div class="col-md-12">
+                <select id="authDropDown" ng-model="selectedAuthority" ng-change="getEstablishments()">
+                    <option ng-repeat="x in authorities" value="{{x.localAuthorityId}}">{{x.name}}
+                    </option>
+                </select>
+            </div>
+        </div>
+
+        <span us-spinner="" spinner-theme="bigWhite" spinner-key="spinner-1"></span>
+
+        <div class="row mt-40" id="results-row">
+            <div class="col-md-6 col-sm-6">
+                <highchart config="chartConfig"></highchart>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Rating</th>
+                        <th>Number of Establishments</th>
+                        <th>Percentage</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="data in tableData">
+                        <td>{{ data.rating }}</td>
+                        <td>{{ data.y }}</td>
+                        <td>{{ data.percentage }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 
 
-<table>
-    <tr ng-repeat="data in tableData">
-        <td>{{ data.rating }}</td>
-        <td>{{ data.y }}</td>
-        <td>{{ data.percentage }}</td>
-    </tr>
-</table>
+    <!-- Footer -->
+    <footer class="mt-80">
+        <div class="row">
+            <div class="col-lg-12">
+                <p>Nirav Shah 2016</p>
+            </div>
+        </div>
+    </footer>
+
+</div>
+<!-- /.container -->
 
 <script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/3.3.1/js/bootstrap.min.js}"></script>
 <script th:src="@{/webjars/angularjs/1.2.18/angular.min.js}"></script>
 <script th:src="@{/webjars/angular-ui-router/1.0.0-alpha.5/angular-ui-router.min.js}"></script>
 <script th:src="@{/webjars/highcharts/3.0.10/highcharts.js}"></script>
