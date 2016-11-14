@@ -11,10 +11,10 @@ import org.springframework.web.client.RestTemplate;
 import java.util.Collections;
 
 @SpringBootApplication
-public class DemoApplication {
+public class FSAIntegrationApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(DemoApplication.class, args);
+        SpringApplication.run(FSAIntegrationApplication.class, args);
     }
 
     @Bean
