@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -46,11 +47,15 @@ public class EstablishmentServiceImpl implements EstablishmentService {
 
     @Override
     public Stats getEstablishmentStats(List<Establishment> establishments) {
-
+        int size = establishments.size();
         final Map<String, Long> stats = establishments.stream().collect(Collectors.groupingBy(Establishment::getRatingValue, Collectors.counting()));
         List<StatItem> statItems = new ArrayList<>();
-        stats.forEach((s, aLong) -> statItems.add(new StatItem(s, aLong)));
+        stats.forEach((rating, total) -> statItems.add(new StatItem(rating, total, getPercentage(size, total))));
         return new Stats(statItems);
+    }
+
+    private float getPercentage(int size, Long aLong) {
+        return (aLong * 100.0f) / size;
     }
 
 }

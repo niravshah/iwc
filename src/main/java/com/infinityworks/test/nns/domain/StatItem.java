@@ -1,31 +1,45 @@
 package com.infinityworks.test.nns.domain;
 
-/**
- * Created by niravshah on 13/11/2016.
- */
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 public class StatItem {
 
-    private String name;
-    private Long y;
 
-    public StatItem(String name, Long y) {
-        this.name = name;
-        this.y = y;
+    private String rating;
+    private Long totalEstablishments;
+    @JsonSerialize(using = MyFloatDeserializer.class)
+    private Float percentage;
+
+
+    public StatItem(String rating, Long totalEstablishments, Float percentage) {
+        this.rating = rating;
+        this.totalEstablishments = totalEstablishments;
+        this.percentage = percentage;
     }
 
-    public String getName() {
-        return name;
+    public String getRating() {
+        return rating;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setRating(String rating) {
+        this.rating = rating;
     }
 
-    public Long getY() {
-        return y;
+    @JsonProperty("y")
+    public Long getTotalEstablishments() {
+        return totalEstablishments;
     }
 
-    public void setY(Long y) {
-        this.y = y;
+    public void setTotalEstablishments(Long totalEstablishments) {
+        this.totalEstablishments = totalEstablishments;
+    }
+
+    public Float getPercentage() {
+        return percentage;
+    }
+
+    public void setPercentage(Float percentage) {
+        this.percentage = percentage;
     }
 }

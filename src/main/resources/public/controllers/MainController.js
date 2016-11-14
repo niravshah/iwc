@@ -12,7 +12,7 @@ var MainController = ['$scope', '$http', 'usSpinnerService', function ($scope, $
                 type: 'pie'
             },
             tooltip: {
-                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                pointFormat: '{series.rating}: <b>{point.percentage:.2f}%</b>'
             },
             plotOptions: {
                 pie: {
@@ -20,7 +20,7 @@ var MainController = ['$scope', '$http', 'usSpinnerService', function ($scope, $
                     cursor: 'pointer',
                     dataLabels: {
                         enabled: true,
-                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                        format: '<b>{point.rating}</b>: {point.percentage:.2f} %',
                         style: {
                             color: 'black'
                         }

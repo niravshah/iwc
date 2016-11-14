@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" ng-app="iwc-demo">
+      ng-app="iwc-demo">
 <head>
     <title>IWC</title>
     <link rel="icon" href="favicon.ico?v=2"/>
     <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.1/css/bootstrap.min.css"
-          th:href="@{/webjars/bootstrap/3.3.1/css/bootstrap.min.css}" rel="stylesheet" media="screen"/>
+          th:href="@{/webjars/bootstrap/3.3.1/css/bootstrap.min.css}" rel="stylesheet"
+          media="screen"/>
     <link href="../css/app.css" th:href="@{/css/app.css}" rel="stylesheet" media="screen"/>
 </head>
 <body ng-controller="MainController" ng-init="initMethod()">
@@ -20,9 +21,10 @@
 
 
 <table>
-    <tr ng-repeat="x in tableData">
-        <td>{{ x.name }}</td>
-        <td>{{ x.y }}</td>
+    <tr ng-repeat="data in tableData">
+        <td>{{ data.rating }}</td>
+        <td>{{ data.y }}</td>
+        <td>{{ data.percentage }}</td>
     </tr>
 </table>
 

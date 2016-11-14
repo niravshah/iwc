@@ -8,7 +8,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>iwc</name>
+	<rating>iwc</rating>
 	<description>Infinity Works Demo</description>
 
 	<parent>
