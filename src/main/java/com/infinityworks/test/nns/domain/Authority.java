@@ -31,4 +31,13 @@ public class Authority {
     public Integer getEstablishmentCount() {
         return establishmentCount;
     }
+
+    @Override
+    public String toString() {
+        return "Authority{" +
+                "localAuthorityId=" + localAuthorityId +
+                ", name='" + name + '\'' +
+                ", establishmentCount=" + establishmentCount +
+                '}';
+    }
 }

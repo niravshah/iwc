@@ -2,8 +2,8 @@ package com.infinityworks.test.nns.repositories.impl.rest;
 
 import com.infinityworks.test.nns.domain.Authorities;
 import com.infinityworks.test.nns.domain.Authority;
+import com.infinityworks.test.nns.exceptions.ApiException;
 import com.infinityworks.test.nns.repositories.AuthorityRepository;
-import com.sun.javafx.binding.StringFormatter;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;

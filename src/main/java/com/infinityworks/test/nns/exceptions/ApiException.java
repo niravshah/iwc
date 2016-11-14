@@ -1,4 +1,4 @@
-package com.infinityworks.test.nns.repositories.impl.rest;
+package com.infinityworks.test.nns.exceptions;
 
 
 import org.springframework.http.HttpStatus;

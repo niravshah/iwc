@@ -11,7 +11,6 @@ public class StatItem {
     @JsonSerialize(using = CustomFloatDeserializer.class)
     private Float percentage;
 
-
     public StatItem(String rating, Long totalEstablishments, Float percentage) {
         this.rating = rating;
         this.totalEstablishments = totalEstablishments;
@@ -41,5 +40,14 @@ public class StatItem {
 
     public void setPercentage(Float percentage) {
         this.percentage = percentage;
+    }
+
+    @Override
+    public String toString() {
+        return "StatItem{" +
+                "rating='" + rating + '\'' +
+                ", totalEstablishments=" + totalEstablishments +
+                ", percentage=" + percentage +
+                '}';
     }
 }

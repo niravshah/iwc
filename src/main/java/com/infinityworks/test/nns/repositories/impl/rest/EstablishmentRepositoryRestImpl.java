@@ -1,6 +1,7 @@
 package com.infinityworks.test.nns.repositories.impl.rest;
 
 import com.infinityworks.test.nns.domain.Establishments;
+import com.infinityworks.test.nns.exceptions.ApiException;
 import com.infinityworks.test.nns.repositories.EstablishmentRepository;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

@@ -17,4 +17,11 @@ public class Stats {
     public void setStatItems(List<StatItem> statItems) {
         this.statItems = statItems;
     }
+
+    @Override
+    public String toString() {
+        return "Stats{" +
+                "statItems=" + statItems +
+                '}';
+    }
 }

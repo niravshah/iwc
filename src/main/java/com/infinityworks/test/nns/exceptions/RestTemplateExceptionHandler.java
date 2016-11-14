@@ -1,6 +1,4 @@
-package com.infinityworks.test.nns.interceptors;
-
-import com.infinityworks.test.nns.repositories.impl.rest.ApiException;
+package com.infinityworks.test.nns.exceptions;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

@@ -1,6 +1,6 @@
 package com.infinityworks.test.nns;
 
-import com.infinityworks.test.nns.interceptors.RestTemplateExceptionHandler;
+import com.infinityworks.test.nns.exceptions.RestTemplateExceptionHandler;
 import com.infinityworks.test.nns.interceptors.ApiVersionInterceptor;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

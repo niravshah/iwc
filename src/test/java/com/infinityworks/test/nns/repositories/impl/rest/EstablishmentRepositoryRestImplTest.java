@@ -1,16 +1,13 @@
 package com.infinityworks.test.nns.repositories.impl.rest;
 
-import com.infinityworks.test.nns.domain.Authorities;
-import com.infinityworks.test.nns.domain.Authority;
 import com.infinityworks.test.nns.domain.Establishment;
 import com.infinityworks.test.nns.domain.Establishments;
+import com.infinityworks.test.nns.exceptions.ApiException;
 import com.infinityworks.test.nns.repositories.EstablishmentRepository;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
-
-import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.springframework.test.web.client.ExpectedCount.times;
