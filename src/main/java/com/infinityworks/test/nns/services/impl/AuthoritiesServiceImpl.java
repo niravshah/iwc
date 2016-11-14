@@ -20,14 +20,14 @@ public class AuthoritiesServiceImpl implements AuthoritiesService {
     @Cacheable("authorities")
     @Override
     public Authorities getAuthorities() {
-        Optional<Authorities> authorities = authorityRepository.getAuthorities();
-        return authorities.orElseThrow(() -> new RuntimeException());
+        Authorities authorities = authorityRepository.getAuthorities();
+        return authorities;
     }
 
     @Override
     public Authority getAuthority(Integer authorityId) {
-        Optional<Authority> authorityById = authorityRepository.getAuthorityById(authorityId);
-        return authorityById.orElseThrow(() -> new RuntimeException());
+        Authority authorityById = authorityRepository.getAuthorityById(authorityId);
+        return authorityById;
     }
 
 }

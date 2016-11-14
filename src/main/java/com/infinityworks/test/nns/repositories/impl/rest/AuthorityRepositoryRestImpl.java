@@ -26,15 +26,11 @@ public class AuthorityRepositoryRestImpl extends BaseRestRespository implements 
     private String authorityUrl;
 
     @Override
-    public Optional<Authorities> getAuthorities() {
+    public Authorities getAuthorities() {
 
         try {
             ResponseEntity<Authorities> authorities = restTemplate.getForEntity(getAuthoritiesUrl(), Authorities.class);
-            if (authorities.getStatusCode().is2xxSuccessful()) {
-                return Optional.of(authorities.getBody());
-            } else {
-                return Optional.empty();
-            }
+            return authorities.getBody();
         } catch (HttpMessageNotReadableException ex) {
             throw new ApiException(ex.getMessage(), ex.getCause());
         }
@@ -42,14 +38,10 @@ public class AuthorityRepositoryRestImpl extends BaseRestRespository implements 
     }
 
     @Override
-    public Optional<Authority> getAuthorityById(Integer authorityId) {
+    public Authority getAuthorityById(Integer authorityId) {
         try {
             final ResponseEntity<Authority> authority = restTemplate.getForEntity(getAuthorityUrl(), Authority.class, authorityId);
-            if (authority.getStatusCode().is2xxSuccessful()) {
-                return Optional.of(authority.getBody());
-            } else {
-                return Optional.empty();
-            }
+            return authority.getBody();
         } catch (HttpMessageNotReadableException ex) {
             throw new ApiException(ex.getMessage(), ex.getCause());
         }

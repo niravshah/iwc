@@ -7,6 +7,7 @@ import java.util.Optional;
 
 public interface AuthorityRepository {
 
-    Optional<Authorities> getAuthorities();
-    Optional<Authority> getAuthorityById(Integer authorityId);
+    Authorities getAuthorities();
+
+    Authority getAuthorityById(Integer authorityId);
 }
