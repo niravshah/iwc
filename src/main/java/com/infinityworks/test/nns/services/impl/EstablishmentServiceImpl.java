@@ -41,34 +41,37 @@ public class EstablishmentServiceImpl implements EstablishmentService {
     @Override
     @Cacheable("establishments")
     public Establishments getEstablishmentsByLocalAuthorityId(Integer localAuthorityId) {
-        logger.info(format("Getting Establishments for Authority with id %d ",localAuthorityId));
+        logger.info(format("Getting Establishments for Authority with id %d ", localAuthorityId));
         final Authority authority = authorityServiceImpl.getAuthority(localAuthorityId);
         final Integer establishmentCount = authority.getEstablishmentCount();
-        logger.info(format("Found %d Establishments for Authority with id %d ",establishmentCount, localAuthorityId));
+        logger.info(format("Found %d Establishments for Authority with id %d ", establishmentCount, localAuthorityId));
         int numberOfPages = ((establishmentCount - 1) / MAX_PAGE_SIZE) + 1;
-        logger.info(format("Getting Establishment details. Total Page size %d",numberOfPages));
+        logger.info(format("Getting Establishment details. Total Page size %d", numberOfPages));
         List<Establishment> establishments = new ArrayList<>();
         for (int i = 1; i <= numberOfPages; i++) {
-            logger.info(format("Getting Establishment details. Current Page %d",i));
-            establishments.addAll(establishmentRepository.getEstablishmentsByLocalAuthorityId(localAuthorityId, MAX_PAGE_SIZE, i).getEstablishments());
+            logger.info(format("Getting Establishment details. Current Page %d", i));
+            final Establishments establishmentsByLocalAuthorityId = establishmentRepository.getEstablishmentsByLocalAuthorityId(localAuthorityId, MAX_PAGE_SIZE, i);
+            if (establishmentsByLocalAuthorityId != null) {
+                establishments.addAll(establishmentsByLocalAuthorityId.getEstablishments());
+            }
         }
 
-        if(establishments.size() == establishmentCount){
+        if (establishments.size() == establishmentCount) {
             logger.info("Returning Establishment details");
             return new Establishments(establishments);
-        }else{
-            throw new IncorrectEstablishmentDetailsException(format("Expected to get details for %d establishments. Acutally got details for %d establishments",establishmentCount,establishments.size()));
+        } else {
+            throw new IncorrectEstablishmentDetailsException(format("Expected to get details for %d establishments. Acutally got details for %d establishments", establishmentCount, establishments.size()));
         }
     }
 
     @Override
     public Stats getEstablishmentStats(List<Establishment> establishments) {
         int size = establishments.size();
-        logger.info(format("Getting Stats for Establishment list of %d establishments",size));
+        logger.info(format("Getting Stats for Establishment list of %d establishments", size));
         final Map<String, Long> stats = establishments.stream().collect(Collectors.groupingBy(Establishment::getRatingValue, Collectors.counting()));
         List<StatItem> statItems = new ArrayList<>();
         stats.forEach((rating, total) -> statItems.add(new StatItem(rating, total, getPercentage(size, total))));
-        logger.info(format("Returning Stats for Establishment list %s",statItems));
+        logger.info(format("Returning Stats for Establishment list %s", statItems));
         return new Stats(statItems);
     }
 
