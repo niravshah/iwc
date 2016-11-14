@@ -50,10 +50,11 @@ The project can also be compiled into an executable jar as below. The 'mvn packa
 
 ---
 
-### CACHING
+### Caching
 
-* All calls to the external FSA API are quite expensive. Hence the app implements a basic Caching strategy defined in CacheConfiguration
-* Authorities and Establishment responses are cached for 5 minutes
+* All calls to the external FSA API are cached using a basic Caching strategy defined in CacheConfiguration
+* Authorities and Establishment responses are cached for 5 minutes.
+* Cache is implemented using Google Guava
  
 ---
 
