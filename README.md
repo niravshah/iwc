@@ -44,11 +44,13 @@ The project can also be compiled into an executable jar as below. The 'mvn packa
 
 ### REST API
 
-* The application currently exposes two REST endpoints
+The application currently exposes two REST endpoints
 
-..1 Authorities Endpoint (/api/authorities) - This endpoint accepts GET requests and exposes a list of all available authorities to the client in JSON format.
+1 **Authorities Endpoint** (/api/authorities) - This endpoint accepts GET requests and exposes a list of all available authorities to the client in JSON format.
 
-..2 Establishment Stats Endpoint (/api/authority/{id}/stats) - Given an Authority ID, this endpoint exposes the FSA Hygiene Rating Distribution for that Authority in JSON format. This API internally implements paging to make paged requests to the FSA API as the number of Establishments can be quite large
+2 **Establishment Stats Endpoint** (/api/authority/{id}/stats) - Given an Authority ID, this endpoint exposes the FSA Hygiene Rating Distribution for that Authority in JSON format. This API internally implements paging to make paged requests to the FSA API as the number of Establishments can be quite large
+
+Integration with the FSA API is done using Spring REST Template and Jackson Object Mappers
 
 ---
 
