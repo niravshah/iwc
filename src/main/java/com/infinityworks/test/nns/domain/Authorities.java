@@ -6,6 +6,8 @@ public class Authorities {
 
     private List<Authority> authorities;
 
+    private Authorities() {}
+
     public Authorities(List<Authority> authorities) {
         this.authorities = authorities;
     }

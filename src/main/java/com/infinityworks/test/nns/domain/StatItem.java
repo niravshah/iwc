@@ -5,11 +5,13 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 public class StatItem {
 
-
     private String rating;
     private Long totalEstablishments;
     @JsonSerialize(using = CustomFloatDeserializer.class)
     private Float percentage;
+
+    private StatItem() {
+    }
 
     public StatItem(String rating, Long totalEstablishments, Float percentage) {
         this.rating = rating;

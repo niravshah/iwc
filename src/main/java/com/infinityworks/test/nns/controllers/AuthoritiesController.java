@@ -18,7 +18,8 @@ public class AuthoritiesController {
 
     @RequestMapping(value = "/api/authorities")
     public ResponseEntity<Authorities> getAuthorities() {
-        return ok(authorityServiceImpl.getAuthorities());
+        final Authorities authorities = authorityServiceImpl.getAuthorities();
+        return ok(authorities);
     }
 
 }

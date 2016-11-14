@@ -6,6 +6,9 @@ public class Stats {
 
     private List<StatItem> statItems;
 
+    private Stats() {
+    }
+
     public Stats(List<StatItem> statItems) {
         this.statItems = statItems;
     }
