@@ -3,35 +3,23 @@ package com.infinityworks.test.nns.repositories.impl.rest;
 import com.infinityworks.test.nns.domain.Authorities;
 import com.infinityworks.test.nns.domain.Authority;
 import com.infinityworks.test.nns.repositories.AuthorityRepository;
-import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.web.client.MockRestServiceServer;
-import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.springframework.test.web.client.ExpectedCount.manyTimes;
 import static org.springframework.test.web.client.ExpectedCount.times;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.method;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo;
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withServerError;
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest
-public class AuthorityRepositoryRestImplTest {
 
-    @Rule
-    public ExpectedException expectedException = ExpectedException.none();
+public class AuthorityRepositoryRestImplTest extends  AbstractRespositoryRestImplTest {
+
 
     private static final String AUTHORITIES_REQUEST_URI = "http://api.ratings.food.gov.uk/Authorities/basic";
     private static final String AUTHORITY_REQUEST_URI = "http://api.ratings.food.gov.uk/Authorities/197";
@@ -43,17 +31,8 @@ public class AuthorityRepositoryRestImplTest {
     private static final String AUTHORITY_REQUEST_INVALID_RESPONSE = "{\n  \"authorities\": [\n    {\n      \n      \"links\": [\n        {\n          \"rel\": \"self\",\n          \"href\": \"http://api.ratings.food.gov.uk/authorities/197\"\n        }\n      ]\n    }\n]}";
 
     @Autowired
-    RestTemplate restTemplate;
-
-    @Autowired
     AuthorityRepository authorityRepository;
 
-    MockRestServiceServer server;
-
-    @Before
-    public void setUp() {
-        server = MockRestServiceServer.bindTo(restTemplate).build();
-    }
 
     @Test
     public void shouldReturnAuthoritiesForSuccessfulAuthoritiesRequest() {

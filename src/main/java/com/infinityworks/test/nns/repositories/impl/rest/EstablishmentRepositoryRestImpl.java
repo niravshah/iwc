@@ -6,6 +6,7 @@ import com.infinityworks.test.nns.repositories.EstablishmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -21,12 +22,16 @@ public class EstablishmentRepositoryRestImpl extends BaseRestRespository impleme
 
     @Override
     public Establishments getEstablishmentsByLocalAuthorityId(Integer localAuthorityId, Integer pageSize, Integer pageNumber) {
-        UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(getUrl())
-                .queryParam("localAuthorityId", localAuthorityId)
-                .queryParam("pageSize", pageSize)
-                .queryParam("pageNumber", pageNumber);
-        final ResponseEntity<Establishments> establishmentsResponseEntity = restTemplate.getForEntity(builder.build().toUriString(), Establishments.class);
-        return establishmentsResponseEntity.getBody();
+        try {
+            UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(getUrl())
+                    .queryParam("localAuthorityId", localAuthorityId)
+                    .queryParam("pageSize", pageSize)
+                    .queryParam("pageNumber", pageNumber);
+            final ResponseEntity<Establishments> establishmentsResponseEntity = restTemplate.getForEntity(builder.build().toUriString(), Establishments.class);
+            return establishmentsResponseEntity.getBody();
+        } catch (HttpMessageNotReadableException ex) {
+            throw new ApiException(ex.getMessage(), ex.getCause());
+        }
     }
 
     private String getUrl() {

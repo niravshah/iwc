@@ -1,43 +1,33 @@
 package com.infinityworks.test.nns.domain;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Establishment {
 
-    @JsonProperty("LocalAuthorityBusinessID")
     private String LocalAuthorityBusinessID;
-
-    @JsonProperty("BusinessName")
     private String BusinessName;
-
-    @JsonProperty("RatingValue")
     private String RatingValue;
 
-    public Establishment() {
+    @JsonCreator
+    public Establishment(@JsonProperty(value = "LocalAuthorityBusinessID", required = true) String localAuthorityBusinessID,
+                         @JsonProperty(value = "BusinessName", required = true) String businessName,
+                         @JsonProperty(value = "RatingValue", required = true) String ratingValue) {
+        LocalAuthorityBusinessID = localAuthorityBusinessID;
+        BusinessName = businessName;
+        RatingValue = ratingValue;
     }
 
     public String getLocalAuthorityBusinessID() {
         return LocalAuthorityBusinessID;
     }
 
-    public void setLocalAuthorityBusinessID(String localAuthorityBusinessID) {
-        LocalAuthorityBusinessID = localAuthorityBusinessID;
-    }
-
     public String getBusinessName() {
         return BusinessName;
     }
 
-    public void setBusinessName(String businessName) {
-        BusinessName = businessName;
-    }
-
     public String getRatingValue() {
         return RatingValue;
-    }
-
-    public void setRatingValue(String ratingValue) {
-        RatingValue = ratingValue;
     }
 
     @Override
