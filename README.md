@@ -79,7 +79,8 @@ Integration with the FSA API is done using Spring REST Template and Jackson Obje
 
 ### Comments
 
-This code tries to follow the paradigmof Self Documenting code and Test Driven code explanations prescribed by Rob Martin in his Clean Code book and hence does not have a lot of explicit comments.
+This code tries to follow the paradigm of "Self Documenting Code" and Test Driven code explanations prescribed by Rob Martin in his Clean Code book and hence does not have a lot of explicit comments.
+However, some of the more complicated methods Establishment Service are commented for further explanation.
 
 ---
 

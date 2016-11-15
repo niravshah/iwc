@@ -38,6 +38,11 @@ public class EstablishmentServiceImpl implements EstablishmentService {
     @Value("${service.establishments.page_size.max}")
     private Integer MAX_PAGE_SIZE;
 
+    /**
+     * This function accepts an Authority Id and makes paged request to FSA API,
+     * not getting more than 1000 (defined in properties file) at one time.
+     * The records fetched are cached for a limit of 5 minutes
+     */
     @Override
     @Cacheable("establishments")
     public Establishments getEstablishmentsByLocalAuthorityId(Integer localAuthorityId) {
@@ -63,6 +68,11 @@ public class EstablishmentServiceImpl implements EstablishmentService {
             throw new IncorrectEstablishmentDetailsException(format("Expected to get details for %d establishments. Acutally got details for %d establishments", establishmentCount, establishments.size()));
         }
     }
+
+    /**
+     * This function accepts a list of Establishments and groups them by their ratings.
+     * followed by a percentage distribution calculation which is returned to the UI
+     */
 
     @Override
     public Stats getEstablishmentStats(List<Establishment> establishments) {
