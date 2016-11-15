@@ -32,6 +32,12 @@ The project can also be compiled into an executable jar as below. The 'mvn packa
 
 ---
 
+### Dependency Management
+
+Dependency management is done using maven. UI Dependencies are managed using Web Jars through maven.
+
+---
+
 ### Test Coverage
 
 * Test coverage is provided using the Spring Boot Test Framework (SpringJUnit4ClassRunner) and Mockito (MockitoJUnitRunner). 
@@ -68,6 +74,12 @@ Integration with the FSA API is done using Spring REST Template and Jackson Obje
 * The UI starts with querying the REST API for 'Auhtorities' (Endpoint 1) above which is exposed as a dropdown available for the user to select an authority.
 * Once the user selects an Authority, the UI makes a call to the 'Establishment Stats Endpoint' (Endpoint 2) above to get the Food Hygiene Rating Distribution for that Authority.
 * The result is displayed as a Pie Chart (implemented using Angular Highcharts) and a Table format.
+
+---
+
+### Comments
+
+This code tries to follow the paradigmof Self Documenting code and Test Driven code explanations prescribed by Rob Martin in his Clean Code book and hence does not have a lot of explicit comments.
 
 ---
 
